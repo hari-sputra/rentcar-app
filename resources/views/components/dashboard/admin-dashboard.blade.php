@@ -46,6 +46,7 @@
                             <th scope="col">Plate Number</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,15 +58,30 @@
                                 <td>{{ $car->plate_number }}</td>
                                 <td>{{ $car->quantity }}</td>
                                 <td>Rp{{ $car->price }}</td>
+                                <td>
+                                    <form action="{{ route('dashboard.destroy', $car->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ route('dashboard.edit', $car->id) }}" class="btn btn-success">
+                                                <iconify-icon icon="akar-icons:edit"></iconify-icon>
+                                            </a>
+                                            <button type="submit" class="btn btn-danger">
+                                                <iconify-icon icon="bi:trash"></iconify-icon>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Empty Data</td>
+                                <td colspan="7" class="text-center">Empty Data</td>
                             </tr>
                         @endforelse
 
                     </tbody>
                 </table>
+                {{ $cars->links() }}
             </div>
         </div>
     </div>

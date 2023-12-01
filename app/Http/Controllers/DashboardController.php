@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -29,7 +30,7 @@ class DashboardController extends Controller
             $query->where('plate_number', 'like', '%' . $request->plate_number . '%');
         }
 
-        $cars = $query->get();
+        $cars = $query->paginate(10);
 
         return view('dashboard.index', compact('cars'));
     }
@@ -76,7 +77,6 @@ class DashboardController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -84,7 +84,8 @@ class DashboardController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('dashboard.edit', compact('car'));
     }
 
     /**
@@ -92,7 +93,35 @@ class DashboardController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        if ($car) {
+            $request->validate([
+                'brand' => ['required'],
+                'model' => ['required'],
+                'plate_number' => ['required'],
+                'quantity' => ['required', 'numeric'],
+                'price' => ['required', 'numeric'],
+            ]);
+
+            $image = null;
+            if ($request->file('image_url')) {
+                Storage::disk('public')->delete($car->image_url);
+                $image = $request->file('image_url')->store('cars', 'public');
+            } else {
+                $image = $request->input('current_image');
+            }
+
+            $car->update([
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'plate_number' => $request->plate_number,
+                'quantity' => $request->quantity,
+                'price' => $request->price,
+                'image_url' => $image,
+            ]);
+        }
+
+        return redirect()->route('dashboard.index');
     }
 
     /**
@@ -100,6 +129,12 @@ class DashboardController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        if ($car) {
+            Storage::disk('public')->delete($car->image_url);
+            $car->delete();
+        }
+
+        return redirect()->route('dashboard.index');
     }
 }

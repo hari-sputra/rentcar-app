@@ -1,6 +1,5 @@
 <section id="search">
     <div class="container search-block p-5">
-
         <form class="row">
             <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
                 <label for="vehicle" class="label-style text-capitalize form-label">Vehicle type</label>

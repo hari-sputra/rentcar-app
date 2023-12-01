@@ -15,7 +15,7 @@
 
         {{-- select car --}}
         @include('components.landing.select-car')
-
+        <hr>
         {{-- footer --}}
         @include('components.footer')
     </div>

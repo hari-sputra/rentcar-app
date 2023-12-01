@@ -107,6 +107,7 @@
             .datepicker({
                 autoclose: true,
                 todayHighlight: true,
+                format: "dd/mm/yyyy",
             })
             .datepicker("update", new Date());
 

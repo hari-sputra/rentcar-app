@@ -16,10 +16,12 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav align-items-center justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active px-3" aria-current="page" href="#">Home</a>
+                        <a class="nav-link px-3 {{ Route::currentRouteName() === 'home' ? 'active' : '' }}"
+                            aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="{{ route('car.index') }}">Cars</a>
+                        <a class="nav-link px-3 {{ Route::currentRouteName() === 'car.index' ? 'active' : '' }}"
+                            href="{{ route('car.index') }}">Cars</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="javascript:void(0);">Services</a>
@@ -69,22 +71,19 @@
                                     <div class="modal-body">
                                         <h5 class="text-center">Login your account</h5>
                                         <div>
-                                            <form id="form4" class="form-group flex-wrap p-3" method="POST"
-                                                action="/login">
+                                            <form class="form-group flex-wrap p-3" method="POST" action="/login">
                                                 @csrf
                                                 <div class="form-input col-lg-12 my-4">
-                                                    <label for="exampleInputEmail4"
-                                                        class="form-label fs-6 text-uppercase fw-bold text-black">Email
+                                                    <label class="form-label fs-6 text-uppercase fw-bold text-black">Email
                                                         Address</label>
-                                                    <input type="text" id="exampleInputEmail4" name="email"
-                                                        placeholder="Email" class="form-control ps-3">
+                                                    <input type="text" name="email" placeholder="Email"
+                                                        class="form-control ps-3">
                                                 </div>
                                                 <div class="form-input col-lg-12 my-4">
-                                                    <label for="inputPassword4"
+                                                    <label
                                                         class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                                    <input type="password" id="inputPassword4" placeholder="Password"
-                                                        class="form-control ps-3" aria-describedby="passwordHelpBlock"
-                                                        name="password">
+                                                    <input type="password" placeholder="Password" class="form-control ps-3"
+                                                        aria-describedby="passwordHelpBlock" name="password">
                                                 </div>
                                                 <div class="d-grid my-3">
                                                     <button type="submit"
@@ -110,8 +109,7 @@
                                     <div class="modal-body">
                                         <h5 class="text-center">Registration your account</h5>
                                         <div>
-                                            <form id="form4" class="form-group flex-wrap p-3" method="POST"
-                                                action="/register">
+                                            <form class="form-group flex-wrap p-3" method="POST" action="/register">
                                                 @csrf
                                                 <div class="form-input col-lg-12 my-4">
                                                     <label for="exampleInputEmail3"
@@ -120,16 +118,15 @@
                                                         placeholder="Name" class="form-control ps-3">
                                                 </div>
                                                 <div class="form-input col-lg-12 my-4">
-                                                    <label for="exampleInputEmail4"
-                                                        class="form-label fs-6 text-uppercase fw-bold text-black">Email
+                                                    <label class="form-label fs-6 text-uppercase fw-bold text-black">Email
                                                         Address</label>
-                                                    <input type="text" id="exampleInputEmail4" name="email"
-                                                        placeholder="Email" class="form-control ps-3">
+                                                    <input type="text" name="email" placeholder="Email"
+                                                        class="form-control ps-3">
                                                 </div>
                                                 <div class="form-input col-lg-12 my-4">
-                                                    <label for="inputPassword4"
+                                                    <label
                                                         class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                                    <input type="password" id="inputPassword4" placeholder="Password"
+                                                    <input type="password" placeholder="Password"
                                                         class="form-control ps-3" aria-describedby="passwordHelpBlock"
                                                         name="password">
                                                 </div>
@@ -140,18 +137,16 @@
                                                         aria-describedby="passwordHelpBlock" name="address">
                                                 </div>
                                                 <div class="form-input col-lg-12 my-4">
-                                                    <label for="inputPassword4"
-                                                        class="form-label  fs-6 text-uppercase fw-bold text-black">Phone
+                                                    <label class="form-label  fs-6 text-uppercase fw-bold text-black">Phone
                                                         Number</label>
-                                                    <input type="number" id="inputPassword4" placeholder="phone number"
+                                                    <input type="number" placeholder="phone number"
                                                         class="form-control ps-3" aria-describedby="passwordHelpBlock"
                                                         name="phone">
                                                 </div>
                                                 <div class="form-input col-lg-12 my-4">
-                                                    <label for="inputPassword4"
-                                                        class="form-label  fs-6 text-uppercase fw-bold text-black">SIM
+                                                    <label class="form-label  fs-6 text-uppercase fw-bold text-black">SIM
                                                         Number</label>
-                                                    <input type="number" id="inputPassword4" placeholder="sim number"
+                                                    <input type="number" placeholder="sim number"
                                                         class="form-control ps-3" aria-describedby="passwordHelpBlock"
                                                         name="sim_number">
                                                 </div>

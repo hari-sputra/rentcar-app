@@ -9,15 +9,15 @@
             <div class="swiper-wrapper">
                 @forelse ($cars as $car)
                     <div class="swiper-slide">
-                        <div class="card">
+                        <div class="card shadow mx-2" style="height: 100%">
                             <a href="javascript:void(0);"><img src="{{ asset("/storage/{$car->image_url}") }}"
-                                    class="card-img-top" alt="..."></a>
+                                    class="image" alt="..."></a>
                             <div class="card-body p-4">
                                 <a href="javascript:void(0);">
                                     <h4 class="card-title">{{ $car->brand . ' ' . $car->model }}</h4>
                                 </a>
                                 <div class="card-text ">
-                                    <ul class="d-flex list-unstyled" style="font-size: 12px">
+                                    <ul class="d-flex list-unstyled" style="font-size: 11px">
                                         <li class="rental-list">
                                             Sports
                                         </li>
@@ -36,13 +36,18 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-between">
-                                    <h4 class="pt-2">Rp{{ $car->price }} <span class="rental-price"
-                                            style="font-size: 13px">/day</span>
-                                    </h4>
-                                    <a href="javascript:void(0);" class="btn btn-primary" style="font-size: 12px">rent
-                                        now
-                                    </a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="">
+                                        <h4 class="pt-2">Rp{{ $car->price }}
+                                        </h4>
+                                        <span class="rental-price" style="font-size: 13px">/day</span>
+                                    </div>
+                                    <div class="d-inline">
+                                        <a href="javascript:void(0);" class="btn btn-primary d-block"
+                                            style="font-size: 12px">rent
+                                            now
+                                        </a>
+                                    </div>
                                 </div>
 
                             </div>
@@ -58,3 +63,13 @@
         </div>
     </div>
 </section>
+
+<style>
+    .image {
+        max-height: 250px;
+        width: 100%;
+        object-fit: cover;
+        padding: 4px 4px 0 4px;
+        border-radius: 12px 12px 0 0;
+    }
+</style>
