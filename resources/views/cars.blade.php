@@ -72,9 +72,9 @@
                     </form>
                 </div>
             </div>
-            <div class="row">
+            <div class="row gy-4">
                 @forelse ($cars as $car)
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <div class="card shadow">
                             <a href="javascript:void(0);">
                                 <img src="{{ asset("/storage/{$car->image_url}") }}" class="image">
